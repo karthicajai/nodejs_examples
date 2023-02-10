@@ -28,12 +28,12 @@ const handleRefreshToken = (req, res) => {
         (err, decoded) => {
             if(err || userFound.username != decoded.username) return res.sendStatus(403) //invalid token
             
-            const roles = Object.values(decoded.roles);
+            const roles = Object.values(userFound.roles);
             //generate new access token 
             const accessToken = jwt.sign(
                 {
                     "userInfo" : {
-                        "username":userFdecodedound.username,
+                        "username":decoded.username,
                         "roles":roles
                     }
                 },
